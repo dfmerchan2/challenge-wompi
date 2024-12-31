@@ -1,0 +1,13 @@
+id;filterId;amount ;currency;paymentMethod;email;userType;idType;idNumber;idFinancial;signature;accessToken;authorization
+1;correct;250000;COP;PSE;test@example.com;0;CC;1999888777;1;valid;valid;valid
+2;invalid acceptance token;250000;COP;PSE;test@example.com;0;CC;1999888777;1;valid;invalid;valid
+3;empty acceptance token;250000;COP;PSE;test@example.com;0;CC;1999888777;1;valid;empty;valid
+4;invalid authorization;250000;COP;PSE;test@example.com;0;CC;1999888777;1;valid;valid;invalid
+5;empty authorization;250000;COP;PSE;test@example.com;0;CC;1999888777;1;valid;valid;empty
+6;invalid amount;0;COP;PSE;test@example.com;0;CC;1999888777;1;valid;valid;valid
+7;invalid currency;0;COP1;PSE;test@example.com;0;CC;1999888777;1;valid;valid;valid
+8;invalid email;250000;COP;PSE;@example.com;0;CC;1999888777;1;valid;valid;valid
+9;invalid user type;250000;COP;PSE;test@example.com;3;CC;1999888777;1;valid;valid;valid
+10;invalid type document;250000;COP;PSE;test@example.com;0;CC1;1999888777;1;valid;valid;valid
+11;invalid number document;250000;COP;PSE;test@example.com;0;CC;"";1;valid;valid;valid
+12;invalid signature;250000;COP;PSE;test@example.com;0;CC;1999888777;1;invalid;valid;valid

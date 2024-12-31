@@ -1,0 +1,64 @@
+group 'co.com.wompi'
+version '1.0'
+description = 'Automation Challenge Wompi'
+
+defaultTasks 'clean', 'test', 'aggregate'
+
+buildscript {
+    ext {
+        serenityVersion = '4.2.8'
+        lombokVersion = '1.18.30'
+        slf4jVersion = '2.0.5'
+        junitVersion = '5.9.2'
+        logVersion = '2.0.5'
+        googleFormatVersion = '1.25.2'
+        javaFakerVersion = '1.0.2'
+    }
+    repositories {
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:4.2.8")
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://plugins.gradle.org/m2/" }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: "net.serenity-bdd.serenity-gradle-plugin"
+
+dependencies {
+    implementation "net.serenity-bdd:serenity-core:$serenityVersion"
+    implementation "net.serenity-bdd:serenity-junit:$serenityVersion"
+    implementation "net.serenity-bdd:serenity-screenplay:$serenityVersion"
+    implementation "net.serenity-bdd:serenity-cucumber:$serenityVersion"
+    implementation "net.serenity-bdd:serenity-screenplay-webdriver:$serenityVersion"
+    implementation "net.serenity-bdd:serenity-screenplay-rest:$serenityVersion"
+    implementation "net.serenity-bdd:serenity-ensure:$serenityVersion"
+    implementation "net.serenity-bdd:serenity-reports:$serenityVersion"
+    implementation "net.serenity-bdd:serenity-rest-assured:$serenityVersion"
+    implementation "com.github.javafaker:javafaker:$javaFakerVersion"
+    implementation "org.slf4j:slf4j-simple:$logVersion"
+    implementation group: 'com.google.googlejavaformat', name: 'google-java-format', version: '1.25.2'
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+    compileOnly "org.projectlombok:lombok:$lombokVersion"
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Test) {
+    systemProperties = System.properties
+    maxParallelForks = Runtime.runtime.availableProcessors()
+}
+
+gradle.startParameter.continueOnFailure = true
+test.finalizedBy(aggregate)

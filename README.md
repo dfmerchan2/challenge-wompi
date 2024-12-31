@@ -46,6 +46,7 @@
 
 En GitHub Actions, se ha implementado el archivo `gradle.yml` para llevar a cabo la compilación, ejecución de pruebas y
 generar el informe de Serenity.
+* Ejecucion: [GitActions](https://github.com/dfmerchan2/challenge-wompi/actions)
 
 ---
 

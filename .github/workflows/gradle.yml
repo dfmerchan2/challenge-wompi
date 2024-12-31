@@ -24,6 +24,9 @@ jobs:
 
     - name: Compile Gradle
       run: gradle build -x test
+      env:
+        AUTH_KEY: ${{ secrets.AUTH_KEY }}
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
     
     - name: Run tests
       run: gradle clean test --tests "co.com.yape.backend.runner.*" aggregate -i

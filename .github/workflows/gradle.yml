@@ -24,12 +24,12 @@ jobs:
 
     - name: Compile Gradle
       run: gradle build -x test
-      env:
-        AUTH_KEY: ${{ secrets.AUTH_KEY }}
-        SECRET_KEY: ${{ secrets.SECRET_KEY }}
     
     - name: Run tests
       run: gradle clean test --tests "co.com.wompi.runners.*" aggregate -i
+      env:
+        AUTH_KEY: ${{ secrets.AUTH_KEY }}
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
     - name: Archive Serenity reports
       uses: actions/upload-artifact@v3
